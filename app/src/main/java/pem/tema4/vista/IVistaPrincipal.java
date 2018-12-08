@@ -4,6 +4,7 @@ public interface IVistaPrincipal {
 	
 	// TODO Añadir el método actualizarMaestro(Object[] datos) que actualiza la lista maestro con los datos
 	// recibidos por parámetros. En cada entrada del vector, está el nombre de una receta.
+    void actualizarMaestro(Object[] datos);
 
 	// TODO Añadir el método actualizarDetalle(Object[] datos) que actualiza la lista detalle con los datos
 	// de una receta recibidos por parámetros. Así:

@@ -68,6 +68,7 @@ public class VistaPrincipal extends AppCompatActivity implements IVistaPrincipal
 	protected void onStart() {
 		super.onStart();
 		// TODO Solicitar al presentador que recupere los datos desde el modelo.
+		presentadorPrincipal.obtenerDatos();
 
 	}
 
@@ -144,14 +145,20 @@ public class VistaPrincipal extends AppCompatActivity implements IVistaPrincipal
             finish();
     }
 
-    // TODO Añadir el método actualizarMaestro(Object[] datos) que actualiza la lista maestro con los datos
+
+
+	// TODO Añadir el método actualizarMaestro(Object[] datos) que actualiza la lista maestro con los datos
 	// recibidos por parámetros. En cada entrada del vector, está el nombre de una receta.	
-
-		// TODO Dentro del método actualizarMaestro(Object[] datos), crear la lista maestro con los nombres 
+	@Override
+	public void actualizarMaestro(Object[] datos) {
+		// TODO Dentro del método actualizarMaestro(Object[] datos), crear la lista maestro con los nombres
 		// de las recetas que entran por parámetros.
-
-		// TODO Dentro del método actualizarMaestro(Object[] datos), si es una pantalla multi-panel, presentar 
+		fragmentoMaestro.crearLista((String[]) datos);
+		// TODO Dentro del método actualizarMaestro(Object[] datos), si es una pantalla multi-panel, presentar
 		// el detalle de la primera receta.
+
+
+	}
 
 
 	// TODO Añadir el método actualizarDetalle(Object[] datos) que actualiza los valores del detalle, 

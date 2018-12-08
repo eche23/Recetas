@@ -1,5 +1,7 @@
 package pem.tema4.modelo;
 
+import android.os.Bundle;
+
 import pem.tema4.AppMediador;
 
 public class Modelo implements IModelo {
@@ -19,9 +21,17 @@ public class Modelo implements IModelo {
         return singleton;
     }
 
-	// TODO Implementar el método obtenerDatos() que recupera los datos de la lista de recetas del 
+
+
+    // TODO Implementar el método obtenerDatos() que recupera los datos de la lista de recetas del
 	// conjunto de recetas y envia una notificación del tipo AVISO_DATOS_LISTOS al presentador.
-	
+    @Override
+    public void obtenerDatos() {
+        Bundle extras = new Bundle();
+        extras.putSerializable(AppMediador.CLAVE_LISTA_RECETAS, conjuntoDeRecetas.getListaDeRecetas());
+        appMediador.sendBroadcast(AppMediador.AVISO_DATOS_LISTOS, extras);
+    }
+
 	// TODO Implementar el método obtenerDetalle(int posicion) que recupera los datos del detalle de una receta del 
 	// conjunto de recetas y envia una notificación del tipo AVISO_DETALLE_LISTO al presentador.
 
