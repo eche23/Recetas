@@ -7,6 +7,7 @@ public interface IPresentadorPrincipal {
 
 	// TODO Añadir el método obtenerDetalles() que recupera los datos de una receta dada su posición
 	// en la lista maestro.
+    void obtenerDetalle(int posicion);
 
 	// TODO Añadir el método tratarAgregar() que lanza la vista de agregación por medio del mediador.
 

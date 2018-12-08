@@ -4,6 +4,7 @@ import pem.tema4.AppMediador;
 import pem.tema4.presentador.IPresentadorPrincipal;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
@@ -114,6 +115,7 @@ public class VistaPrincipal extends AppCompatActivity implements IVistaPrincipal
             getSupportFragmentManager().executePendingTransactions();
         }
         // TODO Solicitar al presentador que trate el item seleccionado.
+		presentadorPrincipal.obtenerDetalle(posicion);
 
     }
 
@@ -133,8 +135,7 @@ public class VistaPrincipal extends AppCompatActivity implements IVistaPrincipal
                 transaccion.addToBackStack(null);
                 transaccion.commit();
                 fab.setVisibility(View.VISIBLE);
-
-                //presentadorPrincipal.obtenerDatos();
+                presentadorPrincipal.obtenerDatos();
 
             }else{
                 //no está en la vista del detalle
@@ -156,16 +157,23 @@ public class VistaPrincipal extends AppCompatActivity implements IVistaPrincipal
 		fragmentoMaestro.crearLista((String[]) datos);
 		// TODO Dentro del método actualizarMaestro(Object[] datos), si es una pantalla multi-panel, presentar
 		// el detalle de la primera receta.
+		if (findViewById(R.id.contenedorDeFragmentos) == null){
+			presentadorPrincipal.obtenerDetalle(0);
+		}
 
 
 	}
-
 
 	// TODO Añadir el método actualizarDetalle(Object[] datos) que actualiza los valores del detalle, 
 	// teniendo en cuenta que en la posición 0 del vector está el nombre de la receta y en qué se usa 
 	// para realizarla, en la posición 1 del vector está la imagen como un Bitmap y en en la posición 3 
 	// del vector está la descripción de la receta.
-
+	@Override
+	public void actualizarDetalle(Object[] datos) {
+		fragmentoDetalle.actualizarNombreReceta((String) datos[0]);
+		fragmentoDetalle.actualizarImagenReceta((Bitmap) datos[1]);
+		fragmentoDetalle.actualizarDescripcion((String) datos[2]);
+	}
 
 
 }

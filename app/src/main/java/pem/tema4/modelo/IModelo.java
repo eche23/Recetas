@@ -7,6 +7,7 @@ public interface IModelo {
 
 	// TODO Añadir el método obtenerDetalles() que recupera los datos de una receta dada su posición
 	// en la lista maestro.
+    void obtenerDetalle(int posicion);
 
 	// TODO Añadir el método agregarReceta(Object[] datos) que almacena una nueva receta en la lista
 	// de recetas.

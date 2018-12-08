@@ -3,6 +3,7 @@ package pem.tema4.presentador;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,13 @@ public class PresentadorPrincipal implements IPresentadorPrincipal {
                     datos[i] = infoReceta.get(i).getNombreReceta();
                 }
                 appMediador.getVistaPrincipal().actualizarMaestro(datos);
+            } else if (intent.getAction().equals(AppMediador.AVISO_DETALLE_LISTO)){
+                String[] datosDetalle = intent.getStringArrayExtra(AppMediador.CLAVE_DETALLE_RECETA);
+                Object[] datos = new Object[3];
+                datos[0] = datosDetalle[0] + "(" + datosDetalle[1] + ")";
+                datos[1] = BitmapFactory.decodeFile(datosDetalle[2]);
+                datos[2] = datosDetalle[3];
+                appMediador.getVistaPrincipal().actualizarDetalle(datos);
             }
             appMediador.unRegisterReceiver(this);
         }
@@ -51,8 +59,13 @@ public class PresentadorPrincipal implements IPresentadorPrincipal {
 
     }
 
-	// TODO Implementar el método obtenerDetalle(int posicion) que registra el receptor para recibir 
+    // TODO Implementar el método obtenerDetalle(int posicion) que registra el receptor para recibir
 	// notificaciones y solicita al modelo que recupere los datos de la lista detalle para una receta dada su posición.
+    @Override
+    public void obtenerDetalle(int posicion) {
+        appMediador.registerReceiver(receptorAvisos, AppMediador.AVISO_DETALLE_LISTO);
+        modelo.obtenerDetalle(posicion);
+    }
 
 	// TODO Implementar el método tratarAgregar() que lanza la vista de agregación por medio del mediador.
 
